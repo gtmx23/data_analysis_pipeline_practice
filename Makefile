@@ -32,9 +32,10 @@ results/figure/sierra.png : scripts/plotcount.py results/sierra.dat
 	python scripts/plotcount.py --input_file=results/sierra.dat \
 	--output_file=results/figure/sierra.png
 
-# Not sure if this is right
-report : results/figure/sierra.png results/figure/last.png results/figure/abyss.png results/figure/isles.png
+report/_build/html/index.html : report/count_report.ipynb report/_toc.yml report/_config.yml \
+	results/figure/sierra.png results/figure/last.png results/figure/abyss.png results/figure/isles.png
 	jupyter-book build report
+# Run: open report/_build/html/index.html
 
 clean :
 	rm -f results/isles.dat
@@ -45,3 +46,4 @@ clean :
 	rm -f results/figure/abyss.png
 	rm -f results/figure/last.png
 	rm -f results/figure/sierra.png
+	rm -rf report/_build
